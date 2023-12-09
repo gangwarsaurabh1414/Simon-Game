@@ -1,5 +1,5 @@
 const h2 = document.querySelector('h2')
-const span = document.querySelector('span');
+const span = document.querySelector('.score-span');
 
 
 let gameSeq = [];
@@ -11,6 +11,13 @@ let level = 0;
 let highestScore = 0;
 
 document.addEventListener('keypress', function () {
+    if (started == false) {
+        started = true;
+        // console.log("game started");
+        levelUp();
+    }
+})
+document.addEventListener('click', function () {
     if (started == false) {
         started = true;
         // console.log("game started");
@@ -53,34 +60,34 @@ function checkAns(idx) {
     // let idx = level - 1;
     if (userSeq[idx] === gameSeq[idx]) {
         if (userSeq.length == gameSeq.length) {
-            setTimeout(levelUp,500)
+            setTimeout(levelUp, 500)
             // levelUp();
         }
     } else {
         h2.innerHTML = `Game Over! your score was <b>${level}</b><br/>Press any key to restart`
 
         document.querySelector('body').style.backgroundColor = "red"
-        setTimeout(function() {
+        setTimeout(function () {
             document.querySelector('body').style.backgroundColor = "white"
 
-        },200);
+        }, 200);
         reset();
     }
 }
 
 function btnPress() {
-// console.log(this);
+    // console.log(this);
     let btn = this;
     userFlash(btn);
 
     userColor = btn.getAttribute("id");
     userSeq.push(userColor);
-    checkAns(userSeq.length-1);
+    checkAns(userSeq.length - 1);
 }
 const buttons = document.querySelectorAll('button')
 for (const btn of buttons) {
     btn.addEventListener('click', btnPress);
-    
+
 }
 
 function reset() {
