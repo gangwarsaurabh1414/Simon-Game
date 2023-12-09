@@ -96,7 +96,7 @@ function reset() {
     gameSeq = []
     if (level >= highestScore) {
         highestScore = level;
-        span.innerText = `Previous Highest Score : ${highestScore}`
+        span.innerText = `Highest Score : ${highestScore}`
     }
     level = 0;
 }
